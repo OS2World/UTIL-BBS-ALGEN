@@ -1,0 +1,275 @@
+               ALGEN v1.21 - the Avail List / ALlfiles GENerator
+                      Copyright 1992-93 by Richard Butler
+
+ALGEN is an Avail List / Allfiles generator for FILES.BBS systems. ALGEN is an
+OS/2 2.x application and will not run under DOS. The source code and make file
+are available as ALSRC121.LZH. ALGEN was compiled using IBM C SET++ in C mode.
+
+ALGEN CARRIES NO WARRANTIES WHETHER EXPRESSED OR IMPLIED, INCLUDING WITHOUT
+LIMITATION, WARRANTIES OF FITNESS AND MERCHANTABILITY WITH RESPECT TO THE
+INFORMATION IN THIS DOCUMENT AND INCLUDED SOFTWARE.
+
+In other words, it's not guaranteed to do anything :-)
+
+ALGEN is FreeWare and requires no registration fee.
+
+If you use ALGEN please send me netmail at 1:396/61 and let me know. The more
+netmail I get the more work I'll do on ALGEN.
+
+ALGEN was originally created to be an OS/2 clone of Harvey Parisien's HLIST.
+Any similarities between ALGEN and HLIST are completely intentional. There
+have been many changes due to user suggestions, but if anything in ALGEN even
+vaguely resembles something in HLIST then credit for it goes to Harvey. If you
+need a DOS based file list generator I would highly recommend HLIST.
+
+-------------------------------------------------------------------------------
+
+ALGEN configuration file:
+-------------------------
+
+ALGEN now uses a keyword type configuration file. It was changed to make it
+easier to add new features and because I hate command line switches.
+
+        KEYWORDS                DESCRIPTION
+        --------                -----------
+
+        System                  Your system name
+
+        NewDays                 Days old to qualify as NEW files. Default
+                                is 14. ALGEN uses the Last Write Date for
+                                all file dates.
+
+        FileList                The path and name for the output FILE LIST
+                                ie. C:\BBSUTIL\EUROPAFL.LST
+                                (required)
+
+        NewFileList             The path and name for the output NEW FILE
+                                LIST. ie. C:\BBSUTIL\NEWFILES.LST
+                                (optional)
+
+        Header                  The path and name of your header file that
+                                will appear at the top of your FILE LIST.
+                                ie. C:\BBSUTIL\ALGEN.HDR
+                                (optional)
+
+        NewHeader               The path and name of your header file that
+                                will appear at the top of your NEW FILE LIST.
+                                ie. C:\BBSUTIL\NEW.HDR
+                                (optional)
+
+        StripFlags              This tells ALGEN not to include flags found
+                                at the beginning of a file description in
+                                the output lists. ie. Maximus's /tb flag.
+                                It functions the same way that Maximus does,
+                                if the first character is a /, the / and
+                                everthing following it, up to and including
+                                the first space, is not displayed in the
+                                output.
+
+        NoIBMchars              This tells ALGEN not to use IBM characters
+                                for borders and area headers.
+
+        AreaInclude             Begins with the keyword AREAINCLUDE and ends
+                                with the keyword END. Contains 1 line per
+                                area you have a files.bbs file on and want
+                                ALGEN to process. The data is in this format...
+
+                                drive:\path\ YOUR TITLE TEXT
+
+                                If you want to use a different file list other
+                                than the normal files.bbs (ie for cd rom use),
+                                just put the complete path and filename after
+                                your title but separate it with a carat like
+                                this...
+
+                    drive:\path\ YOUR TITLE TEXT^drive:\path\files_bbs_name.ext
+
+        MaxAreas                This tells ALGEN to use your Maximus AREA.DAT
+                                file. It should be followed by the path and
+                                filename. ie MaxAreas C:\MAX\AREA.DAT
+
+        AreaExclude             Begins with the keyword AREAEXCLUDE and ends
+                                with the keyword END. Each line will contain
+                                one area name (as defined in your Maximus
+                                Filearea.Ctl) that you wish to exclude from
+                                your file list.
+
+        ShowMaxNames            This tells ALGEN to include Maximus's area
+                                name in the file area descriptions.
+
+        NoEmptyAreas            This tells ALGEN not to include empty file
+                                areas in your FILE LIST and NEW FILE LIST.
+
+        Indent                  Number of spaces to indent each description
+                                line after the first one. This is useful if
+                                you use d/l counters. Default is 0. Max is 16.
+
+        ShowSummary             This tells ALGEN to include summary information
+                                for your file areas at the end of your
+                                FILE LIST and NEW FILE LIST.
+
+        UseFIDX                 This tells ALGEN to use Maximus's FILES.IDX and
+                                FILES.DAT to find file sizes and file dates.
+                                This should speed things up for use with cd rom
+                                since ALGEN wil not have to access the cd rom.
+
+        IgnoreBadDates          This tells ALGEN to ignore file dates > todays
+                                date when determining whether a file is new.
+
+
+Lines in your config file prefaced by a ; are considered comments.
+
+You can tell ALGEN to use an alternate config file by including it on the
+command line like so:
+
+ALGEN Other.Cfg
+
+-------------------------------------------------------------------------------
+
+ALGEN treats any line in your FILES.BBS that begins with a - or a space as a
+comment and copies it exactly as it appears to the output file list. No word
+wrapping is done on comment lines.
+
+ALGEN will preserve the case of filenames. ALGEN does not support long file
+names at this time since most files.bbs systems do not support long file names.
+
+ALGEN now supports paths in your FILES.BBS.
+
+-------------------------------------------------------------------------------
+
+Thanks go to:
+- Harvey Parisien for his HLIST program upon which ALGEN is based.
+- Erik Vanriper for releasing the source for his FILELIST program which
+  served as a reference while writing ALGEN.
+- Scott Dudley for his great work on Maximus and for making all the file
+  structures available.
+- Jim Sterrett, Bob Germer, Jim Allonby, Brian Hampson, and Brenda Moon for
+  helping me beta test ALGEN and for many excellent suggestions.
+- Everyone who has sent netmail with comments and suggestions.
+
+Please direct any bug reports, suggestions, or comments to:
+
+Richard Butler
+BBS: (504) 652-4916 v32b
+Fidonet 1:396/61
+ibmNET 40:4372/61
+OS2Net 81:10/20
+
+ALGEN is free for anyone to use, but if you really feel the need to pay for
+it, I will gladly accept donations to be applied to my college tuition and
+book fees. Any donations may be mailed to:
+
+                Richard Butler
+                1708 Ridgefield Dr.
+                LaPlace, La 70068
+
+-------------------------------------------------------------------------------
+Maximus CBCS is copyright 1989 - 1991 by Scott J. Dudley
+HLIST is copyright 1991 by Harvey Parisien
+FILELIST is copyright 1991 by Erik Vanriper
+OS/2 and C SET++ are copyright 1992 - 1993 by IBM Corp.
+-------------------------------------------------------------------------------
+
+HISTORY
+---------
+v0.2b  - First beta release.
+         Compiled with GNU 2.1. Requires EMX.DLL to run.
+
+v0.3b  - Second beta release.
+         Compiled with C SET/2 v1.0. No longer requires EMX.DLL.
+         Fixed bug that caused (stored offline) to be put in the file list
+         when a blank line was read from files.bbs.
+         Added the option to use a different file other than the normal
+         files.bbs for use with cd rom.
+
+v0.4b  - Third beta release.
+         Released mere minutes after v0.3b :-)
+         Fixed bug that used the files last access date instead of the last
+         modified date.
+
+v1.00  - First general release.
+         Hopefully bug free.
+
+v1.01  - Bug fix.
+         Fixed the 'V6TRUNC' grunged date bug.
+
+v1.02b - Beta release.
+         Changed the config file to a keyword type config file to make it
+         easier for future additions.
+         Added NoIBMchars option.
+         Added NewHeader option for the NEW FILE LIST.
+         Minor cosmetic changes to the output file lists.
+
+v1.03b - Beta release.
+         Added support for Maximus's Area.Dat.
+         Increased the size of the input buffer to allow ALGEN to properly
+         handle Maximus's maximum length file description.
+
+v1.04b - Beta release.
+         Now creates file lists as a temporary file and then renames them.
+         Added ShowMaxNames option.
+         Added NoEmptyAreas option for the NEW FILE LIST.
+
+v1.05b - Beta release.
+         Fixed an errant error message that occurred when not generating a
+         NEW FILE LIST.
+
+v1.10  - Second general release.
+
+v1.11b - Beta release.
+         Added Indent option for d/l counters.
+         Discovered new Link386 options :-) Algen is now smaller and maybe
+         even a little faster.
+
+v1.12b - Beta release.
+         Changed word-wrap routines. ALGEN was stripping spaces from d/l
+         counters (and anything else with more than one space).
+
+v1.13b - Beta release.
+         Fixed bug in NEW FILE LIST.
+
+v1.14b - Beta release.
+         Changed DosFindFirst() to DosQueryPathInfo(). I'm told that this
+         should speed things up a little.
+         NoEmptyAreas now applies to the FILE LIST as well as the
+         NEW FILE LIST.
+
+v1.15  - Third general release.
+
+v1.16b - Beta release.
+         Increased number of file areas that ALGEN can process from 256 to 512.
+         Changed config file parsing routines to properly handle tabs.
+
+v1.17b - Beta release.
+         Added support for paths in files.bbs.
+
+v1.18á - Beta release.
+         Added ShowSummary option.
+         Added support for Maximus's FILES.IDX and FILES.DAT.
+         ALGEN can now process an unlimited number of file areas.
+         ALGEN now opens all Maximus files (AREA.DAT, FILES.BBS, FILES.IDX,
+         FILES.DAT) in OPEN_ACCESS_READONLY | OPEN_SHARE_DENYNONE mode.
+
+v1.19á - Beta release.
+         Compiled with IBM C SET++ in C mode.
+         Fixed an exception bug.
+         Added IgnoreBadDates option.
+
+v1.20  - Fourth general release.
+
+v1.21  - Bug Fix.
+         Fixed problem with optional config items not being optional.
+
+SOURCE CODE
+-----------
+ALGEN's source code is provided as is and carries no warranties or guarantees.
+This source code is provided for educational purposes and for modifications
+for personal use only. No modified source, listing, object, or executable may
+be distributed. You will need the Maximus Structure Definitions contained in
+MSTRUCT.H and FB.H to compile ALGEN.
+
+Richard Butler
+BBS: (504) 652-4916
+Fidonet 1:396/61
+ibmNET 40:4372/61
+OS2Net 81:10/20
